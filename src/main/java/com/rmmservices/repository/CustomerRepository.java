@@ -2,6 +2,7 @@ package com.rmmservices.repository;
 
 import com.rmmservices.model.Customer;
 import com.rmmservices.model.Person;
+import com.rmmservices.repository.util.CustomerCustom;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -12,6 +13,6 @@ import org.springframework.stereotype.Repository;
  * @since 08-06-2019
  */
 @Repository
-public interface CustomerRepository extends JpaRepository<Customer, Integer>{
+public interface CustomerRepository extends JpaRepository<Customer, Integer>, CustomerCustom {
 
 }

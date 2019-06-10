@@ -71,12 +71,11 @@ public class DeviceController {
     public ResponseEntity<?> deleteDevice(@PathVariable Integer idDevice, @PathVariable String userName, @PathVariable String password) {
         Boolean validUser = userRepository.verifyUser(userName, password);
         if (validUser.equals(true)) {
-            User userLogin = userRepository.getUserByLogin(userName, password);
-        return deviceRepository.findById(idDevice)
-                .map(device -> {
-                    deviceRepository.delete(device);
-                    return ResponseEntity.ok().build();
-                }).orElseThrow(() -> new ResourceNotFoundException("Device not found with id: " + idDevice));
+            return deviceRepository.findById(idDevice)
+                    .map(device -> {
+                        deviceRepository.delete(device);
+                        return ResponseEntity.ok().build();
+                    }).orElseThrow(() -> new ResourceNotFoundException("Device not found with id: " + idDevice));
         } else {
             return null;
         }

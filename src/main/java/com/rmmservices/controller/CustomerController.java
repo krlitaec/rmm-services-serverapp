@@ -14,13 +14,13 @@ import java.util.Calendar;
 import java.util.List;
 
 /**
- * RestController class to create/change the person table
+ * RestController class to create/change the customer table
  *
  * @author Karla
  * @since 08-06-2019
  */
 @RestController
-public class PersonController {
+public class CustomerController {
     @Autowired
     private PersonRepository personRepository;
     @Autowired
@@ -28,14 +28,13 @@ public class PersonController {
     @Autowired
     private CustomerRepository customerRepository;
 
-    @GetMapping("/personList")
-    public List<Person> getPersons() {
-        return personRepository.findAll();
+    @GetMapping("/customerList")
+    public List<Customer> getCustomers() {
+        return customerRepository.findAll();
     }
 
-
-    /*@PostMapping("/createCustomer/{userName}/{password}")
-    public User createPerson(@Valid @RequestBody Person person, @PathVariable("userName") String userName
+    @PostMapping("/createCustomer/{userName}/{password}")
+    public User createCustomer(@Valid @RequestBody Person person, @PathVariable("userName") String userName
             , @PathVariable("password") String password) {
         User user = new User();
         String newUserName = person.getFirstName().toLowerCase() + "." + person.getLastName().toLowerCase();
@@ -65,5 +64,5 @@ public class PersonController {
             user.setUserName("USER INVALID!");
         }
         return user;
-    }*/
+    }
 }
