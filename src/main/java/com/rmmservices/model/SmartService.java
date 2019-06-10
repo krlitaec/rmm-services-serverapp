@@ -24,11 +24,11 @@ public class SmartService extends AuditEntity implements Serializable {
     @Column(name = "id_smart_service", unique = true, nullable = false)
     private Integer idSmartService;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "created_by")
     private User createdBy;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "updated_by")
     private User updatedBy;
 
@@ -36,7 +36,7 @@ public class SmartService extends AuditEntity implements Serializable {
     private String name;
 
     @Column(name = "monthly_cost", nullable = false)
-    private BigDecimal monthly_cost;
+    private BigDecimal monthlyCost;
 
     @Column(name = "status", nullable = false)
     private Boolean status;
@@ -76,12 +76,12 @@ public class SmartService extends AuditEntity implements Serializable {
         this.name = name;
     }
 
-    public BigDecimal getMonthly_cost() {
-        return monthly_cost;
+    public BigDecimal getMonthlyCost() {
+        return monthlyCost;
     }
 
-    public void setMonthly_cost(BigDecimal monthly_cost) {
-        this.monthly_cost = monthly_cost;
+    public void setMonthlyCost(BigDecimal monthlyCost) {
+        this.monthlyCost = monthlyCost;
     }
 
     public Boolean getStatus() {
