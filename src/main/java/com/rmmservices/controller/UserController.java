@@ -15,18 +15,27 @@ import java.util.List;
  * @since 08-06-2019
  */
 @RestController
-@RequestMapping(value = "/")
 public class UserController {
     @Autowired
     private UserRepository userRepository;
 
-    @GetMapping("users")
-    public List<User> getQuestions() {
+    @GetMapping("/userList")
+    public List<User> getUsers() {
         return userRepository.findAll();
     }
 
-    @PostMapping("createUser")
+    @PostMapping("/createUser")
     public User createUser(@Valid @RequestBody User user) {
         return userRepository.save(user);
+    }
+
+    @GetMapping("/verifyUser/{userName}/{password}")
+    public String verifyUser(@PathVariable("userName") String userName, @PathVariable("password") String password) {
+        Boolean validUser = userRepository.verifyUser(userName, password);
+        String message = "The user is VALID";
+        if (validUser.equals(false)) {
+            message = "The user is INVALID";
+        }
+        return message;
     }
 }
