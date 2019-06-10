@@ -22,11 +22,26 @@ public class ServiceCustomImpl implements ServiceCustom {
     EntityManager entityManager;
 
     @Override
-    public List<CustomerService> getByCustomer(Integer idCustomer) {
+    public List<CustomerService> findByCustomer(Integer idCustomer) {
         Query query = entityManager.createNativeQuery("SELECT s.* FROM public.customer_service as s " +
                 "WHERE s.id_customer = ?", CustomerService.class);
         query.setParameter(1, idCustomer);
         List list = query.getResultList();
         return list;
+    }
+
+    @Override
+    public CustomerService findExistent(Integer idCustomer, Integer idDevice, Integer idSmartService) {
+        CustomerService customer = null;
+        Query query = entityManager.createNativeQuery("SELECT s.* FROM public.customer_service as s " +
+                "WHERE s.id_customer = ? and s.id_device = ? and s.id_smart_service = ?", CustomerService.class);
+        query.setParameter(1, idCustomer);
+        query.setParameter(2, idDevice);
+        query.setParameter(3, idSmartService);
+        List list = query.getResultList();
+        if (list != null && list.size() != 0) {
+            customer = (CustomerService) list.get(0);
+        }
+        return customer;
     }
 }

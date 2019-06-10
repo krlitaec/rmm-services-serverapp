@@ -1,7 +1,6 @@
 package com.rmmservices.repository.util;
 
 import com.rmmservices.model.CustomerService;
-import com.rmmservices.model.User;
 
 import java.util.List;
 
@@ -12,5 +11,6 @@ import java.util.List;
  * @since 10-06-2019
  */
 public interface ServiceCustom {
-    List<CustomerService> getByCustomer(Integer idCustomer);
+    List<CustomerService> findByCustomer(Integer idCustomer);
+    CustomerService findExistent(Integer idCustomer, Integer idDevice, Integer idSmartService);
 }
