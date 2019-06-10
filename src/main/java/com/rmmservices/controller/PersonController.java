@@ -34,7 +34,7 @@ public class PersonController {
     }
 
 
-    @PostMapping("/createPerson/{userName}/{password}")
+    @PostMapping("/createCustomer/{userName}/{password}")
     public User createPerson(@Valid @RequestBody Person person, @PathVariable("userName") String userName
             , @PathVariable("password") String password) {
         User user = new User();
